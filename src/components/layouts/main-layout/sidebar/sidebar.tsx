@@ -2,15 +2,15 @@
 
 import { Button } from '@/components/ui/button';
 import Fader from '@/components/ui/fader';
-import QuickMenu from '@/components/ui/quick-menu';
+import NavMenu from '@/components/ui/nav-menu';
 import routes from '@/routes';
 import { layoutSlice } from '@/zustand/features/layoutSlice';
-import { CircleHelp, PanelLeftClose } from 'lucide-react';
-import SidebarChild from './sidebar-child';
+import { CircleHelp, Cog, LogOut, PanelLeftClose } from 'lucide-react';
+import SidebarItem from './sidebar-item';
 
 const Sidebar = () => {
-	const hideSidebar = layoutSlice((state) => state.hideSidebar);
-	const setHideSidebar = layoutSlice((state) => state.setHideSidebar);
+	const sidebar = layoutSlice((state) => state.sidebar);
+	const setSidebar = layoutSlice((state) => state.setSidebar);
 
 	const handleSignOut = () => {
 		alert('Signing out...');
@@ -21,39 +21,48 @@ const Sidebar = () => {
 	};
 	return (
 		<div
-			className={`h-full w-full flex-col-reverse md:w-52 md:flex-col md:border-r-[1px] md:border-muted lg:w-64 ${hideSidebar ? 'flex' : 'hidden'}`}
+			className={`h-full w-full flex-col-reverse md:w-52 md:flex-col md:border-r-[1px] md:border-muted lg:w-64 ${sidebar ? 'flex' : 'hidden'}`}
 		>
 			<div className='hidden items-center justify-between px-4 md:flex md:h-16'>
 				<Button
 					variant={'ghost'}
 					size={'icon'}
-					onClick={() => setHideSidebar(!hideSidebar)}
+					onClick={() => setSidebar(!sidebar)}
 				>
-					<PanelLeftClose className='size-6' />
+					<PanelLeftClose className='size-6 md:size-[1.15rem]' />
 				</Button>
 			</div>
 			<Fader
 				direction='vertical'
-				strength='md'
-				className='h-full w-full overflow-y-auto overflow-x-hidden bg-background scrollbar-hide md:h-[calc(100dvh-8rem)]'
+				strength='xs'
+				className='h-full w-full space-y-1 overflow-y-auto overflow-x-hidden bg-background px-4 scrollbar-hide md:h-[calc(100dvh-8rem)]'
 			>
 				{routes.map((route, index) => (
-					<SidebarChild key={index} {...route} />
+					<SidebarItem key={index} {...route} />
 				))}
 			</Fader>
 			<div className='flex h-16 items-center justify-between px-4'>
-				<QuickMenu
+				<NavMenu
 					session={{
 						user: {
 							image: 'https://upload.wikimedia.org/wikipedia/en/0/03/Walter_White_S5B.png',
+							name: 'Walter White',
 						},
 					}}
 					items={[
-						{ type: 'link', text: 'Settings', href: '/settings' },
+						{
+							type: 'link',
+							text: 'Settings',
+							href: '/settings',
+							icon: <Cog className='size-5 md:size-[1.15rem]' />,
+						},
 						{
 							type: 'button',
 							text: 'Sign Out',
 							onClick: handleSignOut,
+							icon: (
+								<LogOut className='size-5 md:size-[1.15rem]' />
+							),
 						},
 					]}
 				/>

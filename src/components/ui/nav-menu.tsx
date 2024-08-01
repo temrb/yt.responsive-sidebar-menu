@@ -12,11 +12,12 @@ import {
 type MenuItem = {
 	type: 'link' | 'button';
 	text: string;
+	icon: React.ReactNode;
 	href?: string;
 	onClick?: () => void;
 };
 
-type QuickMenuProps = {
+type NavMenuProps = {
 	session: {
 		user: {
 			image?: string;
@@ -26,10 +27,10 @@ type QuickMenuProps = {
 	items: MenuItem[];
 };
 
-const QuickMenu: React.FC<QuickMenuProps> = ({ session, items }) => {
+const NavMenu: React.FC<NavMenuProps> = ({ session, items }) => {
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger className='cursor-context-menu'>
+			<DropdownMenuTrigger className='cursor-pointer'>
 				<Avatar className='size-7'>
 					<AvatarImage
 						src={session?.user?.image as string}
@@ -52,9 +53,12 @@ const QuickMenu: React.FC<QuickMenuProps> = ({ session, items }) => {
 							>
 								<Link
 									href={item.href || '#'}
-									className='w-full cursor-pointer'
+									className='flex w-full cursor-pointer items-center justify-between space-x-2'
 								>
-									{item.text}
+									{item.icon}
+									<p className='text-xs md:text-sm'>
+										{item.text}
+									</p>
 								</Link>
 							</Button>
 						) : (
@@ -62,9 +66,13 @@ const QuickMenu: React.FC<QuickMenuProps> = ({ session, items }) => {
 								variant={'ghost'}
 								size={'sm'}
 								onClick={item.onClick}
-								className='w-full cursor-pointer'
 							>
-								{item.text}
+								<div className='flex w-full cursor-pointer items-center justify-between space-x-2'>
+									{item.icon}
+									<p className='text-xs md:text-sm'>
+										{item.text}
+									</p>
+								</div>
 							</Button>
 						)}
 					</DropdownMenuItem>
@@ -74,4 +82,4 @@ const QuickMenu: React.FC<QuickMenuProps> = ({ session, items }) => {
 	);
 };
 
-export default QuickMenu;
+export default NavMenu;

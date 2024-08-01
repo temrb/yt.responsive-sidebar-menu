@@ -8,10 +8,10 @@ interface LayoutProps {
 }
 
 const Content = ({ children }: LayoutProps) => {
-	const hideSidebar = layoutSlice((state) => state.hideSidebar);
+	const sidebar = layoutSlice((state) => state.sidebar);
 	return (
 		<div
-			className={`w-full flex-col md:flex md:h-full ${hideSidebar ? 'hidden' : 'flex'}`}
+			className={`w-full flex-col md:flex md:h-full ${sidebar ? 'hidden' : 'flex'}`}
 		>
 			<Header />
 			<section className='flex h-[calc(100dvh-8rem)] w-full overflow-y-auto overflow-x-hidden md:h-[calc(100dvh-4rem)]'>

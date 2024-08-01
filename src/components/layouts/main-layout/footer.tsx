@@ -7,14 +7,14 @@ import { usePathname } from 'next/navigation';
 
 const Footer = () => {
 	const pathname = usePathname();
-	const hideSidebar = layoutSlice((state) => state.hideSidebar);
+	const sidebar = layoutSlice((state) => state.sidebar);
 
 	const handleSidebarToggle = () => {
-		layoutSlice.setState((state) => ({ hideSidebar: !state.hideSidebar }));
+		layoutSlice.setState((state) => ({ sidebar: !state.sidebar }));
 	};
 
 	const handleNavigation = () => {
-		layoutSlice.setState({ hideSidebar: false });
+		layoutSlice.setState({ sidebar: false });
 	};
 
 	const iconClass = 'h-7 w-7 transition-all duration-300';
@@ -25,7 +25,7 @@ const Footer = () => {
 				onClick={handleSidebarToggle}
 				className='flex h-full w-full items-center justify-center'
 			>
-				{hideSidebar ? (
+				{sidebar ? (
 					<X
 						className={`${iconClass} text-bgAccentDark dark:text-bgAccentLight`}
 						strokeWidth={1}
