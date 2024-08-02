@@ -1,5 +1,7 @@
 'use client';
 
+import { useMediaQuery } from '@/hooks';
+import { layoutSlice } from '@/zustand/features/layoutSlice';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from './avatar';
@@ -31,10 +33,15 @@ type NavMenuProps = {
 
 const NavMenu: React.FC<NavMenuProps> = ({ session, items }) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const { isMobile } = useMediaQuery();
+	const setSidebar = layoutSlice((state) => state.setSidebar);
 
 	const handleCloseDropdown = () => {
 		if (isOpen) {
 			setIsOpen(false);
+		}
+		if (isMobile) {
+			setSidebar(false);
 		}
 	};
 	return (
