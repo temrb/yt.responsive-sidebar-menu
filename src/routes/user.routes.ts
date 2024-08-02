@@ -19,6 +19,11 @@ const userRoutes: Route[] = [
 		soon: true,
 	},
 	{
+		path: '/chat',
+		name: 'Chat',
+		description: 'This is the chat page example',
+	},
+	{
 		path: '/settings',
 		name: 'Settings',
 		description: 'This is the settings page',

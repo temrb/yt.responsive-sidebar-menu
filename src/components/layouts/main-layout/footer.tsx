@@ -1,7 +1,7 @@
 'use client';
 
 import { layoutSlice } from '@/zustand/features/layoutSlice';
-import { Home, Menu, Settings, X } from 'lucide-react';
+import { Home, Menu, MessageSquare, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -63,9 +63,9 @@ const Footer = () => {
 				onClick={handleNavigation}
 			/>
 			<FooterLink
-				href={pathname === '/settings' ? '#' : '/settings'}
-				isActive={pathname === '/settings'}
-				Icon={Settings}
+				href={pathname === '/chat' ? '#' : '/chat'}
+				isActive={pathname === '/chat'}
+				Icon={MessageSquare}
 				onClick={handleNavigation}
 			/>
 		</div>
