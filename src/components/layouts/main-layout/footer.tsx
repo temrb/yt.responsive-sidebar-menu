@@ -5,7 +5,14 @@ import { Home, Menu, MessageSquare, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const FooterLink = ({ href, isActive, Icon, onClick }) => {
+interface FooterLinkProps {
+	href: string;
+	isActive: boolean;
+	Icon: React.FC<React.SVGProps<SVGSVGElement>>;
+	onClick: () => void;
+}
+
+const FooterLink = ({ href, isActive, Icon, onClick }: FooterLinkProps) => {
 	const iconClass = 'h-7 w-7 transition-all duration-300';
 	return (
 		<Link
