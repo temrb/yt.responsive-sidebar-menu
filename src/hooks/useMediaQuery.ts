@@ -15,10 +15,8 @@ export default function useMediaQuery() {
 		const checkDevice = () => {
 			const screenWidth = window.innerWidth;
 
-			if (screenWidth <= 640) {
+			if (screenWidth <= 768) {
 				setDevice('mobile');
-			} else if (screenWidth <= 768) {
-				setDevice('<tablet');
 			} else if (screenWidth > 768 && screenWidth <= 1024) {
 				setDevice('tablet');
 			} else {
@@ -52,7 +50,6 @@ export default function useMediaQuery() {
 		width: dimensions?.width,
 		height: dimensions?.height,
 		isMobile: device === 'mobile',
-		isTabletOrSmaller: device === '<tablet',
 		isTablet: device === 'tablet',
 		isDesktop: device === 'desktop',
 	};

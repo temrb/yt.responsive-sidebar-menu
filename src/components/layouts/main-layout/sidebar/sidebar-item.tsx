@@ -12,11 +12,11 @@ const SidebarItem = (props: Route) => {
 	const currentPath = usePathname();
 	const setSidebar = layoutSlice((state) => state.setSidebar);
 	const defaultStyles =
-		'flex w-full items-center justify-start px-3 py-1 text-sm font-medium text-muted rounded-sm';
-	const { isTabletOrSmaller } = useMediaQuery();
+		'flex w-full items-center justify-start md:px-3 md:py-1 p-4 text-sm font-medium text-muted md:rounded-sm';
+	const { isMobile } = useMediaQuery();
 
 	const handleSidebarClose = () => {
-		if (isTabletOrSmaller) {
+		if (isMobile) {
 			setSidebar(false);
 		}
 	};

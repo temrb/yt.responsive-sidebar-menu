@@ -1,6 +1,6 @@
 import { Route } from '@/types/route';
 
-const routes: Route[] = [
+const userRoutes: Route[] = [
 	{
 		path: '/feature1',
 		name: 'Feature 1',
@@ -12,6 +12,12 @@ const routes: Route[] = [
 		description: 'This is the second feature',
 		soon: true,
 	},
+	{
+		path: '/settings',
+		name: 'Settings',
+		description: 'This is the settings page',
+		ancillary: true,
+	},
 ];
 
-export default routes;
+export default userRoutes;

@@ -14,7 +14,7 @@ const Content = ({ children }: LayoutProps) => {
 			className={`w-full flex-col md:flex md:h-full ${sidebar ? 'hidden' : 'flex'}`}
 		>
 			<Header />
-			<section className='flex h-[calc(100dvh-8rem)] w-full overflow-y-auto overflow-x-hidden md:h-[calc(100dvh-4rem)]'>
+			<section className='flex h-[calc(100%-8rem)] w-full overflow-y-auto overflow-x-hidden md:h-[calc(100%-4rem)]'>
 				{children}
 			</section>
 		</div>

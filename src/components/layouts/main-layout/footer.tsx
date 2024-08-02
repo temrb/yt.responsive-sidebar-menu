@@ -8,13 +8,16 @@ import { usePathname } from 'next/navigation';
 const Footer = () => {
 	const pathname = usePathname();
 	const sidebar = layoutSlice((state) => state.sidebar);
+	const setSidebar = layoutSlice((state) => state.setSidebar);
 
 	const handleSidebarToggle = () => {
-		layoutSlice.setState((state) => ({ sidebar: !state.sidebar }));
+		setSidebar(!sidebar);
 	};
 
 	const handleNavigation = () => {
-		layoutSlice.setState({ sidebar: false });
+		if (sidebar) {
+			setSidebar(false);
+		}
 	};
 
 	const iconClass = 'h-7 w-7 transition-all duration-300';

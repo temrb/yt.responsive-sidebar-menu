@@ -1,7 +1,7 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils/tw.utils';
-import routes from '@/routes';
+import userRoutes from '@/routes/user.routes';
 import { layoutSlice } from '@/zustand/features/layoutSlice';
 import { PanelLeftOpen } from 'lucide-react';
 import { usePathname } from 'next/navigation';
@@ -11,7 +11,7 @@ const Header = () => {
 	const setSidebar = layoutSlice((state) => state.setSidebar);
 	const currentPath = usePathname();
 
-	const currentRoute = routes.find((route) => route.path === currentPath);
+	const currentRoute = userRoutes.find((route) => route.path === currentPath);
 
 	const defaultStyles =
 		'sticky top-0 z-40 flex h-16 w-full flex-row items-center justify-start border-b-[1px] border-muted bg-card p-4';

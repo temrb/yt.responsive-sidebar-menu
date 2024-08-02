@@ -1,5 +1,7 @@
+'use client';
+
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from './avatar';
 import { Button } from './button';
 import {
@@ -28,8 +30,15 @@ type NavMenuProps = {
 };
 
 const NavMenu: React.FC<NavMenuProps> = ({ session, items }) => {
+	const [isOpen, setIsOpen] = useState(false);
+
+	const handleCloseDropdown = () => {
+		if (isOpen) {
+			setIsOpen(false);
+		}
+	};
 	return (
-		<DropdownMenu>
+		<DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
 			<DropdownMenuTrigger className='cursor-pointer'>
 				<Avatar className='size-7'>
 					<AvatarImage
@@ -50,6 +59,7 @@ const NavMenu: React.FC<NavMenuProps> = ({ session, items }) => {
 								className='w-full cursor-pointer'
 								variant={'ghost'}
 								asChild
+								onClick={handleCloseDropdown}
 							>
 								<Link
 									href={item.href || '#'}
@@ -65,7 +75,10 @@ const NavMenu: React.FC<NavMenuProps> = ({ session, items }) => {
 							<Button
 								variant={'ghost'}
 								size={'sm'}
-								onClick={item.onClick}
+								onClick={() => {
+									item.onClick?.();
+									handleCloseDropdown();
+								}}
 							>
 								<div className='flex w-full cursor-pointer items-center justify-between space-x-2'>
 									{item.icon}

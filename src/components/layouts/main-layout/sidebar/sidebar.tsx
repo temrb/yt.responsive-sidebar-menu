@@ -1,12 +1,18 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import Fader from '@/components/ui/fader';
 import NavMenu from '@/components/ui/nav-menu';
-import routes from '@/routes';
+import userRoutes from '@/routes/user.routes';
 import { layoutSlice } from '@/zustand/features/layoutSlice';
 import { CircleHelp, Cog, LogOut, PanelLeftClose } from 'lucide-react';
 import SidebarItem from './sidebar-item';
+
+const testSession = {
+	user: {
+		image: 'https://upload.wikimedia.org/wikipedia/en/0/03/Walter_White_S5B.png',
+		name: 'Walter White',
+	},
+};
 
 const Sidebar = () => {
 	const sidebar = layoutSlice((state) => state.sidebar);
@@ -23,6 +29,7 @@ const Sidebar = () => {
 		<div
 			className={`h-full w-full flex-col-reverse md:w-52 md:flex-col md:border-r-[1px] md:border-muted lg:w-64 ${sidebar ? 'flex' : 'hidden'}`}
 		>
+			{/* header */}
 			<div className='hidden items-center justify-between px-4 md:flex md:h-16'>
 				<Button
 					variant={'ghost'}
@@ -32,23 +39,20 @@ const Sidebar = () => {
 					<PanelLeftClose className='size-6 md:size-[1.15rem]' />
 				</Button>
 			</div>
-			<Fader
-				direction='vertical'
-				strength='xs'
-				className='h-full w-full space-y-1 overflow-y-auto overflow-x-hidden bg-background px-4 scrollbar-hide md:h-[calc(100dvh-8rem)]'
-			>
-				{routes.map((route, index) => (
-					<SidebarItem key={index} {...route} />
-				))}
-			</Fader>
+
+			{/* sidebar items */}
+			<div className='h-full w-full overflow-y-auto overflow-x-hidden bg-background scrollbar-hide md:h-[calc(100dvh-8rem)] md:space-y-1 md:px-4'>
+				{userRoutes
+					.filter((route) => !route.ancillary)
+					.map((route, index) => (
+						<SidebarItem key={index} {...route} />
+					))}
+			</div>
+
+			{/* footer */}
 			<div className='flex h-16 items-center justify-between px-4'>
 				<NavMenu
-					session={{
-						user: {
-							image: 'https://upload.wikimedia.org/wikipedia/en/0/03/Walter_White_S5B.png',
-							name: 'Walter White',
-						},
-					}}
+					session={testSession}
 					items={[
 						{
 							type: 'link',
