@@ -1,5 +1,5 @@
 const Page = () => {
-	return <div>some settings here</div>;
+	return <div>This is the dashboard</div>;
 };
 
 export default Page;

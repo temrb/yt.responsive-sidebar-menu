@@ -2,6 +2,12 @@ import { Route } from '@/types/route';
 
 const userRoutes: Route[] = [
 	{
+		path: '/dashboard',
+		name: 'Dashboard',
+		description: 'This is the dashboard',
+		ancillary: true,
+	},
+	{
 		path: '/feature1',
 		name: 'Feature 1',
 		description: 'This is the first feature',
