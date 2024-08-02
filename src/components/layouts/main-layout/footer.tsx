@@ -46,12 +46,12 @@ const Footer = () => {
 			>
 				{sidebar ? (
 					<X
-						className={`text-bgAccentDark dark:text-bgAccentLight h-7 w-7 transition-all duration-300`}
+						className='text-bgAccentDark dark:text-bgAccentLight h-7 w-7 transition-all duration-300'
 						strokeWidth={1}
 					/>
 				) : (
 					<Menu
-						className={`h-7 w-7 cursor-pointer opacity-50 transition-all duration-300`}
+						className='h-7 w-7 cursor-pointer opacity-50 transition-all duration-300'
 						strokeWidth={1}
 					/>
 				)}
