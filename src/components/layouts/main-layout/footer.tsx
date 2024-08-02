@@ -46,7 +46,7 @@ const Footer = () => {
 			>
 				{sidebar ? (
 					<X
-						className='text-bgAccentDark dark:text-bgAccentLight h-7 w-7 transition-all duration-300'
+						className='h-7 w-7 text-foreground transition-all duration-300'
 						strokeWidth={1}
 					/>
 				) : (
